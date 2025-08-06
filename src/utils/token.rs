@@ -19,3 +19,14 @@ pub enum Token {
 }
 
 
+
+
+
+#[cfg(test)]
+mod test {
+    use super::*;
+
+    const INPUT:&str = "`=+(){},;";
+
+    
+}
