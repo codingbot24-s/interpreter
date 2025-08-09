@@ -1,4 +1,4 @@
-use super::token::token::{Token, TokenType, new_token};
+use super::token::token::{Token, TokenType, new_token,add_keyword};
 
 pub struct Lexer {
     input: String,
@@ -6,11 +6,6 @@ pub struct Lexer {
     read_position: usize,
     ch: char,
 }
-
-pub enum LE {
-    LETTER,
-}
-
 pub static TOKEN_TABLE: [TokenType; 256] = {
     let mut table = [const { TokenType::UNDEFINED }; 256];
     table[b'=' as usize] = TokenType::ASSIGN;
@@ -78,6 +73,7 @@ impl Lexer {
         let str = &self.input[position..self.read_position-1];
         return str;
     }
+        
 }
 pub fn is_letter(ch: &char) -> bool {
     ch.is_alphabetic() || *ch as u8== b'_'

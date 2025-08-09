@@ -1,6 +1,7 @@
 mod utils;
 
 use utils::lexer::Lexer;
+
 fn main() {
     let input = String::from("foo_bar");
     let mut l = Lexer::new(input);

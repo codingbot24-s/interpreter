@@ -1,4 +1,10 @@
+
+
 pub mod token {
+    use std::collections::HashMap;
+
+    
+
     
     #[derive(PartialEq,Clone,Copy,Debug)]
     pub enum TokenType {
@@ -26,13 +32,20 @@ pub mod token {
         litreal:String
     }
 
+     
     pub fn new_token (token_type:TokenType,ch:char) -> Token{
         Token {
             token:token_type,
             litreal:ch.to_string(),
         }                
     }
-        
+
+    pub fn add_keyword (keyword:String,Tk:TokenType) {
+        let mut keywords = HashMap::new();
+        keywords.insert(keyword,Tk); 
+    }    
+    
+    
 }
 
 
