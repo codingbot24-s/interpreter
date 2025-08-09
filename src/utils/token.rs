@@ -1,6 +1,6 @@
 pub mod token {
-    #[allow(dead_code)]
-    #[derive(PartialEq,Clone,Copy)]
+    
+    #[derive(PartialEq,Clone,Copy,Debug)]
     pub enum TokenType {
         // ILLEGAL signifies a token/character we don’t know about
         ILLEGAL,
@@ -20,7 +20,7 @@ pub mod token {
         LET,
         UNDEFINED
     }
-
+    #[derive(Debug)]
     pub struct Token {
         token:TokenType,
         litreal:String
