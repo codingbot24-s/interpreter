@@ -74,7 +74,12 @@ impl Lexer {
         let str = &self.input[position..self.read_position - 1];
         return str;
     }
+    pub fn skip_whitespace(&mut self) {
+           
+    }
 }
+
 pub fn is_letter(ch: &char) -> bool {
-    ch.is_alphabetic() || *ch as u8 == b'_'
+    // now we can read the space we can skip this also
+    ch.is_alphabetic() || *ch as u8 == b'_' || ch.is_whitespace()
 }
