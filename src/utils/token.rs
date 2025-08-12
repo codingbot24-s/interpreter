@@ -1,12 +1,13 @@
+use crate::utils::token::token::TokenType;
+use std::collections::HashMap;
+use std::sync::LazyLock;
 
-
+static KEYWORDS: LazyLock<HashMap<&str, TokenType>> =
+    LazyLock::new(|| HashMap::from([("fn", TokenType::FUNCTION), ("let", TokenType::LET)]));
 pub mod token {
-    use std::collections::HashMap;
+    use crate::utils::token::KEYWORDS;
 
-    
-
-    
-    #[derive(PartialEq,Clone,Copy,Debug)]
+    #[derive(PartialEq, Clone, Copy, Debug)]
     pub enum TokenType {
         // ILLEGAL signifies a token/character we don’t know about
         ILLEGAL,
@@ -24,28 +25,25 @@ pub mod token {
         RBRACE,
         FUNCTION,
         LET,
-        UNDEFINED
+        UNDEFINED,
     }
     #[derive(Debug)]
     pub struct Token {
-        token:TokenType,
-        litreal:String
+        pub token: TokenType,
+        pub litreal: String,
     }
 
-     
-    pub fn new_token (token_type:TokenType,ch:char) -> Token{
+    pub fn new_token(token_type: TokenType, ch: char) -> Token {
         Token {
-            token:token_type,
-            litreal:ch.to_string(),
-        }                
+            token: token_type,
+            litreal: ch.to_string(),
+        }
     }
-
-    pub fn add_keyword (keyword:String,Tk:TokenType) {
-        let mut keywords = HashMap::new();
-        keywords.insert(keyword,Tk); 
-    }    
-    
-    
+    pub fn lookup_ident(ident: &str) -> &TokenType {
+        if let Some(tok) = KEYWORDS.get(ident) {
+            tok
+        } else {
+            &TokenType::IDENT
+        }
+    }
 }
-
-

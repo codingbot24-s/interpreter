@@ -1,4 +1,4 @@
-use super::token::token::{Token, TokenType, new_token,add_keyword};
+use super::token::token::{Token, TokenType, lookup_ident, new_token};
 
 pub struct Lexer {
     input: String,
@@ -51,30 +51,30 @@ impl Lexer {
             self.read_char();
             Some(token)
         } else if is_letter(&self.ch) {
-            // take the letters
-            let literal = self.read_identifier();       
-            // create a token with literal and correct keywords
-            println!("Found {}", literal);
-            None
+            let literal = self.read_identifier();
+            let tok_type = lookup_ident(literal);
+            let tok: Token = Token {
+                litreal: literal.to_string(),
+                token: *tok_type,
+            };
+            Some(tok)
         } else {
-            
             self.read_char();
-            let token = new_token(TokenType::UNDEFINED, self.ch);
+            let token = new_token(TokenType::ILLEGAL, self.ch);
             return Some(token);
         }
     }
     // it reads in an identifier and advances our lexer’s positions until it encounters a non-letter-character.
     pub fn read_identifier(&mut self) -> &str {
         let position = self.position;
-        
+
         while is_letter(&self.ch) {
             self.read_char();
         }
-        let str = &self.input[position..self.read_position-1];
+        let str = &self.input[position..self.read_position - 1];
         return str;
     }
-        
 }
 pub fn is_letter(ch: &char) -> bool {
-    ch.is_alphabetic() || *ch as u8== b'_'
+    ch.is_alphabetic() || *ch as u8 == b'_'
 }
