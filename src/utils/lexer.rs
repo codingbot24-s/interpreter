@@ -22,13 +22,12 @@ pub static TOKEN_TABLE: [TokenType; 256] = {
     table[b'/' as usize] = TokenType::SLASH;
     table[b'<' as usize] = TokenType::LT;
     table[b'>' as usize] = TokenType::GT;
-table
+    table
 };
 
 impl Lexer {
     pub fn new(input: String) -> Self {
         let mut l = Lexer {
-            
             input: input.chars().collect(),
             position: 0,
             read_position: 0,
@@ -110,7 +109,10 @@ impl Lexer {
             };
             Some(tok)
         } else if self.ch == '\0' {
-            let tok = Token{token:TokenType::EOF,litreal:String::new()};
+            let tok = Token {
+                token: TokenType::EOF,
+                litreal: String::new(),
+            };
             Some(tok)
         } else {
             self.read_char();
@@ -152,4 +154,3 @@ pub fn is_letter(ch: &char) -> bool {
 pub fn is_digit(ch: &char) -> bool {
     ch.is_numeric()
 }
-
