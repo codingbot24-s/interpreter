@@ -3,7 +3,15 @@ use std::collections::HashMap;
 use std::sync::LazyLock;
 
 static KEYWORDS: LazyLock<HashMap<&str, TokenType>> =
-    LazyLock::new(|| HashMap::from([("fn", TokenType::FUNCTION), ("let", TokenType::LET)]));
+    LazyLock::new(|| HashMap::from([
+        ("fn", TokenType::FUNCTION), 
+        ("let", TokenType::LET),
+        ("true", TokenType::TRUE),
+        ("false", TokenType::FALSE),
+        ("if", TokenType::IF),
+        ("else", TokenType::ELSE),
+        ("return", TokenType::RETURN)
+    ]));
 pub mod token {
     use crate::utils::token::KEYWORDS;
 
@@ -26,6 +34,17 @@ pub mod token {
         FUNCTION,
         LET,
         UNDEFINED,
+        MINUS,
+        BANG,
+        ASTERISK,
+        SLASH,
+        LT,
+        GT,
+        TRUE,
+        FALSE,
+        IF,
+        ELSE,
+        RETURN 
     }
     #[derive(Debug)]
     pub struct Token {

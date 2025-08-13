@@ -17,6 +17,12 @@ pub static TOKEN_TABLE: [TokenType; 256] = {
     table[b'{' as usize] = TokenType::LBRACE;
     table[b'}' as usize] = TokenType::RBRACE;
     table[b'0' as usize] = TokenType::EOF;
+    table[b'-' as usize] = TokenType::MINUS;
+    table[b'!' as usize] = TokenType::BANG;
+    table[b'*' as usize] = TokenType::ASTERISK;
+    table[b'/' as usize] = TokenType::SLASH;
+    table[b'<' as usize] = TokenType::LT;
+    table[b'>' as usize] = TokenType::GT;
     table
 };
 
@@ -70,7 +76,7 @@ impl Lexer {
             Some(tok)
         } else {
             self.read_char();
-            let token = new_token(TokenType::ILLEGAL, self.ch);
+            let token = new_token(TokenType::UNDEFINED, self.ch);
             return Some(token);
         }
     }
