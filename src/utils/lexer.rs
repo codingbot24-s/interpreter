@@ -58,6 +58,16 @@ impl Lexer {
                 token: *tok_type,
             };
             Some(tok)
+        } else if is_digit(&self.ch) {
+            let tok_type = TokenType::INT;
+            // TODO: Bug while loop is infinite if inputs is single INT
+            let literal = self.read_num();
+            println!("After read num litreal is {}",literal );
+            let tok = Token {
+                litreal: literal.to_string(),
+                token: tok_type,
+            };
+            Some(tok)
         } else {
             self.read_char();
             let token = new_token(TokenType::ILLEGAL, self.ch);
@@ -74,12 +84,21 @@ impl Lexer {
         let str = &self.input[position..self.read_position - 1];
         return str;
     }
-    pub fn skip_whitespace(&mut self) {
-           
+    pub fn read_num(&mut self) -> &str {
+        let position = self.position;
+        while is_digit(&self.ch) {
+            self.read_char();
+        }
+        
+        return &self.input[position..self.position];
     }
 }
 
 pub fn is_letter(ch: &char) -> bool {
-    // now we can read the space we can skip this also
+    // TODO: we can implement fn for skiping white space
     ch.is_alphabetic() || *ch as u8 == b'_' || ch.is_whitespace()
+}
+
+pub fn is_digit(ch: &char) -> bool {
+    ch.is_numeric()
 }
