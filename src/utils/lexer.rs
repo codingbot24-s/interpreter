@@ -28,7 +28,7 @@ table
 impl Lexer {
     pub fn new(input: String) -> Self {
         let mut l = Lexer {
-            // changed
+            
             input: input.chars().collect(),
             position: 0,
             read_position: 0,
@@ -123,12 +123,10 @@ impl Lexer {
         let position = self.position;
 
         while is_letter(&self.ch) {
-            println!("  Reading: '{}' at pos {}", self.ch, self.position);
             self.read_char();
         }
 
         let result: String = self.input[position..self.position].iter().collect();
-        println!("  Result: '{}'", result);
         result
     }
     pub fn read_num(&mut self) -> String {
