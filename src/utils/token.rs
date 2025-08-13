@@ -44,7 +44,9 @@ pub mod token {
         FALSE,
         IF,
         ELSE,
-        RETURN 
+        RETURN,
+        EQ,
+        NOTEQ 
     }
     #[derive(Debug)]
     pub struct Token {
