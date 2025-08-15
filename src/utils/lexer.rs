@@ -1,7 +1,7 @@
 use super::token::token::{Token, TokenType, lookup_ident, new_token};
 
-pub struct Lexer {
-    input: Vec<char>,
+pub struct Lexer{
+    input: Vec< char>,
     position: usize,
     read_position: usize,
     ch: char,
