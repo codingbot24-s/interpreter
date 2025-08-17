@@ -15,7 +15,8 @@ pub mod repl {
         if input == "exit" {
             break;
         }
-        // creating a lexer will result in borrowing error;     
+        let l = Lexer::new(&input); 
+         
     } 
     
    }

@@ -26,7 +26,7 @@ pub static TOKEN_TABLE: [TokenType; 256] = {
 };
 
 impl Lexer {
-    pub fn new(input: String) -> Self {
+    pub fn new(input: &String) -> Self {
         let mut l = Lexer {
             input: input.chars().collect(),
             position: 0,
