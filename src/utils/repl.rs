@@ -24,15 +24,21 @@ pub mod repl {
                 break;
             }
             let mut l = Lexer::new(&input);
-            if let Some(mut tok) = l.next_token() {
-                while tok.token != TokenType::EOF {
-                    match l.next_token() {
-                        Some(next_tok) => tok = next_tok,
-                        None => println!("Error in next token"),
+            loop {
+                match l.next_token() {
+                    Some(token) => {
+                        if token.token == TokenType::EOF {
+                           break; 
+                        }
+                        println!("{:?} -> '{}'", token.token, token.litreal);
                     }
-                    println!("{:?}", tok)
+                    None => {
+                        println!("Error getting token");
+                        break;
+                    }  
                 }
-            }
+            } 
         }
+        println!()
     }
 }

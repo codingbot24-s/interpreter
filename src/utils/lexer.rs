@@ -1,7 +1,7 @@
 use super::token::token::{Token, TokenType, lookup_ident, new_token};
 
-pub struct Lexer{
-    input: Vec< char>,
+pub struct Lexer {
+    input: Vec<char>,
     position: usize,
     read_position: usize,
     ch: char,
@@ -55,7 +55,7 @@ impl Lexer {
 
     pub fn next_token(&mut self) -> Option<Token> {
         self.skip_whitespace();
-
+        
         match self.ch {
             '=' => {
                 if self.peek_char() == '=' {
