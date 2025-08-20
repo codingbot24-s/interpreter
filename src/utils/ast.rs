@@ -4,10 +4,11 @@ pub mod ast {
     pub trait Node {
         fn token_literal() -> str;
     }    
-    pub trait Statement {
+    pub trait Statement : Node { 
         fn statement_node();   
     }
-    pub trait Expression {
+    
+    pub trait Expression : Node{
         fn expression_node();
     }
     pub struct Program {
