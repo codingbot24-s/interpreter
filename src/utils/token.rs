@@ -82,7 +82,7 @@ pub mod token {
         where T : Expression
     {
         fn token_literal(&self) -> &str {
-           "" 
+           &self.token.litreal
         }
     }
     
@@ -95,7 +95,7 @@ pub mod token {
     } 
     impl<'a> Node for Identifire<'a> {
         fn token_literal(&self) -> &str {
-            ""
+            &self.token.litreal
         }
     }
     impl<'a> Expression for Identifire<'a> {
