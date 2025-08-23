@@ -13,7 +13,7 @@ static KEYWORDS: LazyLock<HashMap<&str, TokenType>> =
         ("return", TokenType::RETURN)
     ]));
 pub mod token {
-    use crate::utils::token::KEYWORDS;
+    use crate::utils::token::{self, KEYWORDS};
     use crate::utils::ast::ast::{Expression,Statement,Node};
     #[derive(PartialEq, Clone, Copy, Debug)]
     pub enum TokenType {
@@ -68,13 +68,13 @@ pub mod token {
         }
     }
     pub struct Identifire <'a>{
-        token:TokenType,
+        token:Token,
         value : &'a str
     } 
     pub struct LetStatement<'a, T>
         where T : Expression
     {
-        token:TokenType,
+        token:Token,
         name:Box<Identifire<'a>>,
         value:T          
     }
@@ -93,6 +93,15 @@ pub mod token {
             
         }
     } 
-    
+    impl<'a> Node for Identifire<'a> {
+        fn token_literal(&self) -> &str {
+            ""
+        }
+    }
+    impl<'a> Expression for Identifire<'a> {
+        fn expression_node() {
+            
+        }
+    }  
 }
 
