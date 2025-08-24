@@ -19,6 +19,10 @@ pub mod parser {
                 self.peek_token = tok
            } 
         }
+
+        pub fn ParseProgram () {
+
+        }
     }
 
 }
