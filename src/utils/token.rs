@@ -46,9 +46,9 @@ pub mod token {
         ELSE,
         RETURN,
         EQ,
-        NOTEQ 
+        NOTEQ,
     }
-    #[derive(Debug)]
+    #[derive(Debug,Clone)]
     pub struct Token {
         pub token: TokenType,
         pub litreal: String,
