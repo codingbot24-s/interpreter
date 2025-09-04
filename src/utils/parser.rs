@@ -35,6 +35,8 @@ pub mod parser {
             }
         }
 
-        pub fn ParseProgram() {}
+        pub fn parse_program () {
+
+        } 
     }
 }
